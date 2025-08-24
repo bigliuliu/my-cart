@@ -11,16 +11,17 @@ type FieldType = {
   password: string;
 };
 export const Login = () => {
-  const userState = useSelector((state: any) => state.user);
-  useEffect(() => {
-    console.log("userState", userState);
-  }, [userState]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onFinish: FormProps<FieldType>["onFinish"] = (values: FieldType) => {
-    dispatch(login(values.username, values.password)).then(() => {
+  const userState = useSelector((state: any) => state.user);
+  useEffect(() => {
+    if (userState.status === "succeed") {
       navigate("/product");
-    });
+    }
+  }, [userState.status, navigate]);
+
+  const onFinish: FormProps<FieldType>["onFinish"] = (values: FieldType) => {
+    dispatch(login(values.username, values.password));
     console.log(store.getState());
   };
 

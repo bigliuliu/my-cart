@@ -7,22 +7,22 @@ export const userReducer = (
 ) => {
   switch (actions.type) {
     case "LOGIN_REQUEST":
-      return (state = {
+      return {
         ...state,
         status: "loading",
-        error: undefined
-      });
+        error: undefined,
+      };
     case "LOGIN_SUCCESS":
-      return (state = {
+      return {
         userInfo: actions.payload,
         status: "succeed",
-      });
+      };
     case "LOGIN_FAIL":
-      return (state = {
+      return {
         ...state,
         status: "failed",
         error: actions.error,
-      });
+      };
     case "LOGIN_OUT":
       return { userInfo: null, status: "idle" };
     default:
