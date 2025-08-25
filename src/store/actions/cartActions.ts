@@ -2,8 +2,15 @@ import axios from "axios";
 import type { Dispatch } from "redux";
 import type { CartAction, CartItem } from "../types/cartType";
 
-export const clearCart = (dispatch: Dispatch): CartAction =>
-  dispatch({ type: "CLEAR" });
+// 没有接口调用的清空
+// export const clearCart = (): CartAction =>({type:"CLEAR"})
+
+// 需要接口调用清空
+export const clearCart = () => {
+  return (dispatch: Dispatch) => {
+    dispatch({ type: "CLEAR" });
+  };
+};
 
 export const addItem = (productInfo: any) => {
   return async (dispatch: Dispatch) => {
@@ -25,7 +32,7 @@ export const addItem = (productInfo: any) => {
 };
 
 export const removeItem = (id: number) => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch): Promise<void> => {
     try {
       const res = await axios.get(
         `https://jsonplaceholder.typicode.com/posts/${id}`
