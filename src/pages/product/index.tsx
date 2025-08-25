@@ -21,8 +21,8 @@ export const Product = () => {
     <>
       {productList.length ? (
         <div className="product-card-grid">
-          {productList.map((product) => (
-            <ProductCard productList={product} />
+          {productList.map((product,index) => (
+            <ProductCard productList={product} key={index}/>
           ))}
         </div>
       ) : (
