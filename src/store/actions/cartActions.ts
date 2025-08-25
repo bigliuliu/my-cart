@@ -8,8 +8,8 @@ export const clearCart = (dispatch: Dispatch): CartAction =>
 export const addItem = (productInfo: any) => {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await axios.post(
-        `https://jsonplaceholder.typicode.com/posts/${productInfo}`
+      const res = await axios.get(
+        `https://jsonplaceholder.typicode.com/posts/${productInfo.id}`
       );
       const data = {
         id: res.data.id,

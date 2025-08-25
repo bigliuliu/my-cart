@@ -10,6 +10,7 @@ export const cartReducer = (
       const existing = state.findIndex(
         (item) => item.id === actions.payload.id
       );
+      // console.log("Cart-----",existing,state)
       if (existing !== -1) {
         return state.map((item) =>
           item.id === actions.payload.id
@@ -41,10 +42,14 @@ export const cartReducer = (
       );
     }
     case "UPDATE_COUNT":
-        return state.map(item=>item.id === actions.payload.id ? {...item,count:actions.payload.count}:item)
+      return state.map((item) =>
+        item.id === actions.payload.id
+          ? { ...item, count: actions.payload.count }
+          : item
+      );
     case "CLEAR":
-        return []
+      return [];
     default:
-        return state
+      return state;
   }
 };
