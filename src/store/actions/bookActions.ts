@@ -34,21 +34,24 @@ export const cancelPlan = (id: number) => {
       }
     } catch (error) {
       console.log("CANCEL_error", error);
+      throw error
     }
   };
 };
 
 export const deletePlan = (ids: number[]) => {
+   
   return async (dispatch: Dispatch) => {
     try {
       const res = await axios.get(
-        `https://jsonplaceholder.typicode.com/posts/${id}`
+        `https://jsonplaceholder.typicode.com/posts/${ids[0]}`
       );
       if (res.data) {
         dispatch({ type: "DELETE", payload: { ids } });
       }
     } catch (error) {
       console.log("DELETE_error", error);
+      throw error
     }
   };
 };
@@ -57,13 +60,14 @@ export const updatePlan = (plan: Plan) => {
   return async (dispatch: Dispatch) => {
     try {
       const res = await axios.get(
-        `https://jsonplaceholder.typicode.com/posts/${plan.id}`
+        `https://jsonplaceholder.typicode.com/posts/${plan.destination}`
       );
       if (res.data) {
         dispatch({ type: "UPDATE", payload: plan });
       }
     } catch (error) {
       console.log("UPDATE_error", error);
+      throw error
     }
   };
 };

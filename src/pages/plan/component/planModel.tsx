@@ -2,7 +2,7 @@ import { DatePicker, Form, Input, Modal, Button, message } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { Plan, User } from "../../../store/types/bookingType";
-import { bookPlan } from "../../../store/actions/bookActions";
+import { bookPlan, updatePlan } from "../../../store/actions/bookActions";
 import type { GetProps } from "antd";
 import dayjs from "dayjs";
 type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
@@ -23,17 +23,17 @@ export const PlanModel = ({
   const [form] = Form.useForm();
   useEffect(() => {
     if (planInfo) {
+      console.log(planInfo, "父组件传过来的----");
       form.setFieldsValue({
-        range: planInfo.range,
+        range: planInfo.range.map((day) => dayjs(day, "YYYY/MM/DD")),
         destination: planInfo.destination,
         userInfo: planInfo.userInfo,
       });
+      setUerInfo(planInfo.userInfo);
+      setRangeDate(planInfo.range);
     }
-  }, []);
-  const bookState = useSelector((state) => state.book);
-  useEffect(() => {
-    console.log(bookState, "这是book Store----");
-  }, [bookState]);
+  }, [planInfo, form]);
+
   const [userInfo, setUerInfo] = useState<User[]>([{ name: "", phone: "" }]);
   const delteUser = (index) => {
     setUerInfo(userInfo.filter((_, i) => i !== index));
@@ -49,8 +49,13 @@ export const PlanModel = ({
   const handleForm = async () => {
     try {
       const formValue = await form.validateFields();
-      handleOk({...formValue,range:rangeDate});
-      await dispatch(bookPlan({...formValue,range:rangeDate}) as any);
+      if (planInfo?.userInfo.length) {
+        await dispatch(updatePlan({...formValue,id:planInfo.id, range: rangeDate}))
+      } else {
+        await dispatch(bookPlan({ ...formValue, range: rangeDate }) as any);
+      }
+    handleOk({ ...formValue, range: rangeDate });
+
       onClose();
     } catch (error) {
       message.error(JSON.stringify(error) || "操作失败");
