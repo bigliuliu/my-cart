@@ -332,3 +332,15 @@ console.log(str.slice(0, 5)); // "Hello"
 console.log(str);             // "Hello World" (没变)
 
 // ❌ 字符串没有 splice
+
+let str = "Hello";
+for (let i = 0; i < str.length; i++) {
+  console.log(str[i]);
+}
+
+for (let ch of str) {
+  console.log(ch);
+}
+arr.forEach((item, index) => {
+  console.log(index, item);
+});
