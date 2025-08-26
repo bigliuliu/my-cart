@@ -4,11 +4,13 @@ import { Avatar, Badge } from "antd";
 import { CartDrawer } from "../cartDrawer";
 import { loginOut } from "../../store/actions/userActions";
 import { useNavigate } from "react-router-dom";
+import { CarTwoTone, CreditCardTwoTone } from "@ant-design/icons";
 import "./index.less";
 export const Header = () => {
   const userState = useSelector((state) => state.user);
   const cartState = useSelector((state) => state.cart);
   const [cartTotal, setCartTotal] = useState(0);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -37,6 +39,14 @@ export const Header = () => {
             <Avatar shape="square" size="large" />
           </Badge>
           <CartDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
+          <CarTwoTone
+            style={{ fontSize: "30px" }}
+            onClick={() => navigate("/plan")}
+          />
+          <CreditCardTwoTone
+            style={{ fontSize: "30px" }}
+            onClick={() => navigate("/product")}
+          />
         </div>
       ) : (
         <p>no user</p>
