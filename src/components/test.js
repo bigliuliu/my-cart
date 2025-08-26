@@ -293,3 +293,42 @@ console.log(arr14); // [5, "hello"]
 let arr15 = [10, 20, 30, 40];
 let avg = arr15.reduce((sum, num) => sum + num, 0) / arr15.length;
 console.log(avg); // 25
+
+// shift 删除数组的第一位，unshift，给数组的第一位添加值
+let numbers = [2, 3, 4];
+numbers.unshift(1);
+console.log(numbers); // [1, 2, 3, 4]
+
+let colors = ["red", "green", "blue"];
+colors.shift();
+console.log(colors); // ["green", "blue"]
+
+// slice(start, end)
+// 作用：截取数组的一部分，返回一个新数组（不会改变原数组）。
+// 特点：不修改原数组，索引从 start 到 end-1。
+
+
+let arr = [1, 2, 3, 4, 5];
+let result = arr.slice(1, 3);
+console.log(result); // [2, 3]
+console.log(arr);    // [1, 2, 3, 4, 5] (没变)
+
+// ✅ splice(start, deleteCount, ...items)
+// 作用：从数组中删除、替换或添加元素，返回被删除的元素数组。
+// 特点：会修改原数组。
+
+let arr = [1, 2, 3, 4, 5];
+let deleted = arr.splice(1, 2, 99, 100); 
+console.log(deleted); // [2, 3]
+console.log(arr);     // [1, 99, 100, 4, 5]
+
+// 2. 字符串中的 slice
+// ✅ 字符串有 slice
+// 作用：截取字符串，返回新字符串（不会改变原字符串）。
+
+
+let str = "Hello World";
+console.log(str.slice(0, 5)); // "Hello"
+console.log(str);             // "Hello World" (没变)
+
+// ❌ 字符串没有 splice
