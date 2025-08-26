@@ -50,7 +50,7 @@ export const PlanModel = ({
     try {
       const formValue = await form.validateFields();
       if (planInfo?.userInfo.length) {
-        await dispatch(updatePlan({...formValue,id:planInfo.id, range: rangeDate}))
+        await dispatch(updatePlan({...formValue,id:planInfo.id, range: rangeDate}) as any)
       } else {
         await dispatch(bookPlan({ ...formValue, range: rangeDate }) as any);
       }
