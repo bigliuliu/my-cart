@@ -50,7 +50,7 @@ export const CartDrawer = ({ open, onClose }: DrawerType) => {
             </p>
           </div>
           <Space.Compact>
-            <Button
+            <Button    
               onClick={() => dispatch(removeItem(item.id))}
               icon={<MinusOutlined />}
             />

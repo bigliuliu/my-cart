@@ -231,11 +231,11 @@
 // changeLetter(str);
 
 // 1. 每个数字加 1
-let arr1 = [1, 2, 3, 4].map(num => num + 1); 
+let arr1 = [1, 2, 3, 4].map((num) => num + 1);
 console.log(arr1); // [2, 3, 4, 5]
 
 // 2. 筛选大于 20 的数字
-let arr2 = [10, 25, 30, 45].filter(num => num > 20);
+let arr2 = [10, 25, 30, 45].filter((num) => num > 20);
 console.log(arr2); // [25, 30, 45]
 
 // 3. 计算总和
@@ -243,19 +243,19 @@ let arr3 = [1, 2, 3, 4, 5].reduce((sum, num) => sum + num, 0);
 console.log(arr3); // 15
 
 // 4. 找第一个大于 25 的数
-let arr4 = [10, 20, 30, 40].find(num => num > 25);
+let arr4 = [10, 20, 30, 40].find((num) => num > 25);
 console.log(arr4); // 30
 
 // 5. 判断是否全是偶数
-let arr5 = [2, 4, 6, 8].every(num => num % 2 === 0);
+let arr5 = [2, 4, 6, 8].every((num) => num % 2 === 0);
 console.log(arr5); // true
 
 // 6. 转换为大写
-let arr6 = ["a", "b", "c"].map(ch => ch.toUpperCase());
+let arr6 = ["a", "b", "c"].map((ch) => ch.toUpperCase());
 console.log(arr6); // ["A", "B", "C"]
 
 // 7. 是否存在大于 100 的数
-let arr7 = [5, 12, 8, 130, 44].some(num => num > 100);
+let arr7 = [5, 12, 8, 130, 44].some((num) => num > 100);
 console.log(arr7); // true
 
 // 8. 展开数组
@@ -271,11 +271,14 @@ let arr10 = ["apple", "banana", "pear"].join("-");
 console.log(arr10); // "apple-banana-pear"
 
 // 11. 平方数组
-let arr11 = [1, 2, 3, 4, 5].map(num => num * num);
+let arr11 = [1, 2, 3, 4, 5].map((num) => num * num);
 console.log(arr11); // [1, 4, 9, 16, 25]
 
 // 12. 提取 name
-let arr12 = [{id:1, name:"A"}, {id:2, name:"B"}].map(obj => obj.name);
+let arr12 = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" },
+].map((obj) => obj.name);
 console.log(arr12); // ["A", "B"]
 
 // 13. 统计出现次数
@@ -295,52 +298,88 @@ let avg = arr15.reduce((sum, num) => sum + num, 0) / arr15.length;
 console.log(avg); // 25
 
 // shift 删除数组的第一位，unshift，给数组的第一位添加值
-let numbers = [2, 3, 4];
-numbers.unshift(1);
-console.log(numbers); // [1, 2, 3, 4]
+// let numbers = [2, 3, 4];
+// numbers.unshift(1);
+// console.log(numbers); // [1, 2, 3, 4]
 
-let colors = ["red", "green", "blue"];
-colors.shift();
-console.log(colors); // ["green", "blue"]
+// let colors = ["red", "green", "blue"];
+// colors.shift();
+// console.log(colors); // ["green", "blue"]
 
 // slice(start, end)
 // 作用：截取数组的一部分，返回一个新数组（不会改变原数组）。
 // 特点：不修改原数组，索引从 start 到 end-1。
 
-
-let arr = [1, 2, 3, 4, 5];
-let result = arr.slice(1, 3);
-console.log(result); // [2, 3]
-console.log(arr);    // [1, 2, 3, 4, 5] (没变)
+// let arr = [1, 2, 3, 4, 5];
+// let result = arr.slice(1, 3);
+// console.log(result); // [2, 3]
+// console.log(arr);    // [1, 2, 3, 4, 5] (没变)
 
 // ✅ splice(start, deleteCount, ...items)
 // 作用：从数组中删除、替换或添加元素，返回被删除的元素数组。
 // 特点：会修改原数组。
 
-let arr = [1, 2, 3, 4, 5];
-let deleted = arr.splice(1, 2, 99, 100); 
-console.log(deleted); // [2, 3]
-console.log(arr);     // [1, 99, 100, 4, 5]
+// let arr = [1, 2, 3, 4, 5];
+// let deleted = arr.splice(1, 2, 99, 100);
+// console.log(deleted); // [2, 3]
+// console.log(arr);     // [1, 99, 100, 4, 5]
 
 // 2. 字符串中的 slice
 // ✅ 字符串有 slice
 // 作用：截取字符串，返回新字符串（不会改变原字符串）。
 
-
-let str = "Hello World";
-console.log(str.slice(0, 5)); // "Hello"
-console.log(str);             // "Hello World" (没变)
+// let str = "Hello World";
+// console.log(str.slice(0, 5)); // "Hello"
+// console.log(str);             // "Hello World" (没变)
 
 // ❌ 字符串没有 splice
 
-let str = "Hello";
-for (let i = 0; i < str.length; i++) {
-  console.log(str[i]);
-}
+// let str = "Hello";
+// for (let i = 0; i < str.length; i++) {
+//   console.log(str[i]);
+// }
 
-for (let ch of str) {
-  console.log(ch);
-}
-arr.forEach((item, index) => {
-  console.log(index, item);
-});
+// for (let ch of str) {
+//   console.log(ch);
+// }
+// arr.forEach((item, index) => {
+//   console.log(index, item);
+// });
+
+// const quickSort = (arr) => {
+//   if (arr.length <= 1) {
+//     return arr;
+//   }
+
+//   let pivot = arr[0];
+//   let leftArr = [];
+//   let rightArr = [];
+
+//   for (let i = 1; i < arr.length; i++) {
+//     if (arr[i] < pivot) {
+//       leftArr.push(arr[i]);
+//     } else {
+//       rightArr.push(arr[i]);
+//     }
+//   }
+
+//   return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+// };
+let arrList = [9, 3, 39, 23, 1, 3, 5, 0];
+const quick = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let pivot = arr[0];
+  let leftArr = [];
+  let rightArr = [];
+  for (let index = 1; index < arr.length; index++) {
+    if (arr[index] < pivot) {
+      leftArr.push(arr[index]);
+    } else {
+      rightArr.push(arr[index]);
+    }
+  }
+  return [...quick(leftArr), pivot, ...quick(rightArr)];
+};
+console.log(quick(arrList));
