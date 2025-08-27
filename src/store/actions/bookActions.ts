@@ -71,3 +71,16 @@ export const updatePlan = (plan: Plan) => {
     }
   };
 };
+// 同步写法
+// export const updatePlan = (plan: Plan) => {
+//   return {
+//     type: "UPDATE",
+//     payload: plan,
+//   };
+// };
+// 异步，不涉及api
+// export const updatePlan = (plan: Plan) => {
+//   return (dispatch: Dispatch) => {
+//     dispatch({ type: "UPDATE", payload: plan });
+//   };
+// };
