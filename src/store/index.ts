@@ -3,11 +3,11 @@ import { userReducer } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { bookReducer } from "./reducers/bookReducer";
 import { thunk } from "redux-thunk";
+import axios from "axios";
 
 const persistUser = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))
   : undefined;
-
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
@@ -24,4 +24,5 @@ export const store = createStore(
 store.subscribe(() => {
   const userState = store.getState().user;
   localStorage.setItem("user", JSON.stringify(userState));
+  console.log("订阅到的Cart变化",store.getState().cart)
 });

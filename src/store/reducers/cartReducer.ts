@@ -49,6 +49,8 @@ export const cartReducer = (
       );
     case "CLEAR":
       return [];
+    case "ALL_ITEMS":
+      return actions.payload;
     default:
       return state;
   }

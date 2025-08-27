@@ -58,3 +58,19 @@ export const updateCount = (id: number, count: number) => {
     }
   };
 };
+export const fetchCart = (userId: number) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const res = await axios.get(
+        `https://jsonplaceholder.typicode.com/posts/${userId}`
+      );
+      const data = [
+        { id: res.data.id, name: res.data.titlle, price: 1, count: 1 },
+      ];
+      dispatch({ type: "ALL_ITEMS", payload: data });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+};
